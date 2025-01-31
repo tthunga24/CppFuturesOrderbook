@@ -1,0 +1,31 @@
+Example FIX message:
+8=FIX.4.4|9=122|35=D|49=CLIENT|56=BROKER|34=2|52=20231010-10:30:00.000|11=12345|21=1|55=TICK|54=1|38=100|40=2|44=100.00|59=0|10=123|
+
+Parts to modify:
+
+11: Unique orderId
+    -Each order should have its own unique orderId (32-bit unsigned integer)
+    -Attempting to add an order with an already existing orderId will throw an error
+
+21: Order Type
+    - 1: FillorKill order
+    - 2: GoodTillFill order
+
+54: Order Side
+    - 1: Buy
+    - 2: Sell
+
+38: Quantity of order (32-bit unsigned integer)
+
+44: Price of order (increments of 0.25)
+
+
+-GTF Buy 10 @ 99.00 
+8=FIX.4.4|9=122|35=D|49=CLIENT|56=BROKER|34=2|52=20231010-10:30:00.000|11=1|21=2|55=TICK|54=1|38=10|40=2|44=99.00|59=0|10=123|
+
+-GTF Sell 10 @ 101.00
+8=FIX.4.4|9=122|35=D|49=CLIENT|56=BROKER|34=2|52=20231010-10:30:00.000|11=2|21=2|55=TICK|54=2|38=10|40=2|44=101.00|59=0|10=123|
+
+-FoK Buy 15 @ 102.00
+8=FIX.4.4|9=122|35=D|49=CLIENT|56=BROKER|34=2|52=20231010-10:30:00.000|11=3|21=1|55=TICK|54=1|38=15|40=2|44=102.00|59=0|10=123|
+
