@@ -7,15 +7,11 @@
 #include <iostream>
 #include <sstream>
 #include <unordered_map>
-#include <variant>
-#include <optional>
 #include <iterator>
 #include <cstdint>
 #include <stdexcept>
 #include <memory>
 #include <iomanip>
-
-
 
 using int32 = std::int32_t;
 using uint32 = std::uint32_t;
@@ -44,7 +40,6 @@ private:
     uint32 quantity_;
     uint32 remaining_;
     bool counted_ = false;
-
 
 
 public:
@@ -216,7 +211,7 @@ private:
                 
                 }); 
 
-                updateLevelStats();
+                UpdateLevelStats();
                 
                 if (bid -> getRemaining() == 0 || bid -> getOrderType() == OrderType::FillOrKill){
                     
@@ -263,7 +258,7 @@ private:
         
     }
 
-    void updateLevelStats(){
+    void UpdateLevelStats(){
         
         for(int i = seqIdx; i < trades_.size(); i++){
             
